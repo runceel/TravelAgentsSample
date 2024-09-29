@@ -1,0 +1,25 @@
+﻿@page "/"
+@using Markdig
+@using Microsoft.SemanticKernel
+@using Microsoft.SemanticKernel.ChatCompletion
+@using TravelAgentsSample.Agents
+@inject AgentFactory AgentFactory
+
+<PageTitle>Home</PageTitle>
+
+<div>
+    <textarea @bind="_inputMessage" rows="5" cols="100" />
+</div>
+<button @onclick="TaskAsyncEnumerableExtensions" disabled="@_isProcessing">問い合わせる</button>
+
+
+@if(_messages.Count != 0)
+{
+    <hr />
+    @foreach (var m in _messages)
+    {
+        <div>
+            @((MarkupString)Markdown.ToHtml(m, _pipeline))
+        </div>
+    }
+}
