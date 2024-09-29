@@ -7,10 +7,11 @@
 
 <PageTitle>Home</PageTitle>
 
+<h1>トラベル エージェント サンプル</h1>
 <div>
     <textarea @bind="_inputMessage" rows="5" cols="100" />
 </div>
-<button @onclick="TaskAsyncEnumerableExtensions" disabled="@_isProcessing">問い合わせる</button>
+<button @onclick="AskToAgentAsync" disabled="@_isProcessing">問い合わせる</button>
 
 
 @if(_messages.Count != 0)

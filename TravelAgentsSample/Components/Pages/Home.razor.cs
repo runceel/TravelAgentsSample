@@ -19,7 +19,8 @@ public partial class Home
     private bool _isProcessing;
     private string _inputMessage = "";
     private readonly List<string> _messages = [];
-    private async Task TaskAsyncEnumerableExtensions()
+
+    private async Task AskToAgentAsync()
     {
         if (_isProcessing) return;
 
@@ -38,6 +39,11 @@ public partial class Home
                 """);
                 StateHasChanged();
             }
+
+            if (agentGroupChat.IsComplete)
+            {
+                _messages.Add("エージェントの処理が正常に完了しました。");
+            }
         }
         catch (Exception ex)
         {
@@ -49,5 +55,4 @@ public partial class Home
             _isProcessing = false;
         }
     }
-
 }
