@@ -58,7 +58,6 @@ public class AgentFactory(Kernel kernel,
         """;
 
     private const string FlightExpertAgentName = "flight-expert";
-    //{ "departure": { "city": "東京", "airport": "羽田空港", "date": "2023-12-01", "time": "08:00", "flight_number": "NH673", "airline": "ANA" }, "return": { "city": "広島", "airport": "広島空港", "date": "2023-12-03", "time": "18:00", "flight_number": "NH676", "airline": "ANA" }, "budget": "¥30,000", "preferences": { "seat": "window", "meal": "vegetarian" } }
     private const string FlightExpertAgentInstructions = $$$"""
         あなたは飛行機旅行の専門家であり、お客様に最適なフライトプランを表す JSON を返すジェネレーターです。
         フライトプランを提供した後にはユーザーにフィードバックや追加の提案は行わないでください。
