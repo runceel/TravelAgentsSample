@@ -27,7 +27,7 @@ public class AgentFactory(Kernel kernel,
         旅行プランを立てることのみに集中してください。
         {{{TravelManagerAgentName}}} からの追加指示で対応できるものがある場合のみ対応をしてください。
         
-        JSON の形式は trip というキーに day, hotel, activities のキーを持つオブジェクトの配列にしてください。
+        JSON の形式は budget というキーに予算を、trip というキーに day, hotel, activities のキーを持つオブジェクトの配列で表してください。
         1 日を 1 つのオブジェクトで表してください。
         activities は旅行プランで訪れる観光スポットやレストランを配列形式で指定してください。
         その際に kind でレストランか観光スポットかわかるように指定してください。time で訪れる大体の目安時間を指定してください。
@@ -50,10 +50,11 @@ public class AgentFactory(Kernel kernel,
                         { "kind": "restaurant", "name": "レストラン名", "time": "1時間" },
                         { "kind": "sightseeing", "name": "観光スポット", "time": "2時間" },
                         { "kind": "restaurant", "name": "レストラン名", "time": "1時間" },
-                        { "kind": "sightseeing", "name": "観光スポット", "time": "2時間" },
+                        { "kind": "sightseeing", "name": "観光スポット", "time": "2時間" }
                     ]
                 }
-            ]
+            ],
+            "budget": "¥50,000"
         }
         """;
 
@@ -208,6 +209,7 @@ public class AgentFactory(Kernel kernel,
             Arguments = new(new AzureOpenAIPromptExecutionSettings
             {
                 Temperature = 0,
+                FunctionChoiceBehavior = FunctionChoiceBehavior.Auto(),
             }),
             LoggerFactory = LoggerFactory,
         };

@@ -1,10 +1,11 @@
+#pragma warning disable SKEXP0050
 using Azure.AI.OpenAI;
 using Azure.Core;
 using Azure.Identity;
-using Microsoft.Extensions.Azure;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
+using Microsoft.SemanticKernel.Plugins.Core;
 using TravelAgentsSample.Agents;
 using TravelAgentsSample.Components;
 
@@ -27,6 +28,9 @@ builder.AddAzureOpenAIClient("openai",
         settings.Credential = credential;
     });
 
+builder.Services.AddSingleton<MathPlugin>();
+builder.Services.AddSingleton(sp =>
+    KernelPluginFactory.CreateFromObject(sp.GetRequiredService<MathPlugin>()));
 builder.Services.AddSingleton<HiroshimaDialectPlugin>();
 builder.Services.AddSingleton<IChatCompletionService>(sp =>
 {
