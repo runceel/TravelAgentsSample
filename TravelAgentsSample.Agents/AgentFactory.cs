@@ -31,6 +31,7 @@ public class AgentFactory(Kernel kernel,
         1 日を 1 つのオブジェクトで表してください。
         activities は旅行プランで訪れる観光スポットやレストランを配列形式で指定してください。
         その際に kind でレストランか観光スポットかわかるように指定してください。time で訪れる大体の目安時間を指定してください。
+        例にある JSON 意外の形式での提案は受け付けません。
 
         例:
         {
@@ -67,7 +68,8 @@ public class AgentFactory(Kernel kernel,
         JSON は departure と return と budget のキーを持つオブジェクトにしてください。
         departure と return には city, airport, day, time, flightNumber, airline のキーを持つオブジェクトを指定してください。
         budget には予算を指定してください。
-
+        例にある JSON 意外の形式での提案は受け付けません。
+        
         例:
         {
             "departure": { "city": "東京", "airport": "羽田空港", "day": 1, "time": "08:00", "flightNumber": "NH673", "airline": "ANA" },
@@ -102,14 +104,14 @@ public class AgentFactory(Kernel kernel,
 
     private const string TravelPhraseExpertAgentName = "travel-phrases-expert";
     private const string TravelPhraseExpertAgentInstructions = """
-        あなたは旅行に役立つフレーズを表す JSON を返すジェネレーターです。
-        利用者が求めているシチュエーションで役に立つフレーズの一覧を提供してください。
+        あなたは旅行に役立つ標準語のフレーズを表す JSON を返すジェネレーターです。
         旅行に役立つフレーズを提供した後にはユーザーにフィードバックや追加の提案は行わないでください。
-        目標、求められる振る舞い、求められない振る舞いに書いてあることを守ってください。
-        あなたに出来ないことは他の人が担当するので安心して自分に求められていることだけに集中してください。
+        日本の標準語以外のことには回答しないで無視してください。
 
         JSON の形式は phrases というキーを持つオブジェクトにしてください。
-
+        phrases は situation と phrase というキーを持ったオブジェクトを配列形式で指定してください。
+        例にある JSON 意外の形式での提案は受け付けません。
+        
         例:
         {
             "phrases": [
@@ -127,7 +129,8 @@ public class AgentFactory(Kernel kernel,
                         
         JSON の形式は phrases というキーを持つオブジェクトにしてください。
         phrases は標準語 (standard) と広島弁(hiroshima) というキーを持ったオブジェクトを配列形式で指定してください。
-
+        例にある JSON 意外の形式での提案は受け付けません。
+        
         例:
         {
             "phrases": [

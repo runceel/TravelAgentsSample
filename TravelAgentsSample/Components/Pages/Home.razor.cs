@@ -33,7 +33,7 @@ public partial class Home
             await foreach (var content in agentGroupChat.InvokeAsync())
             {
                 _messages.Add($"""
-                {content.AuthorName}:
+                ### {content.AuthorName}
 
                 {content.Content}
                 """);
