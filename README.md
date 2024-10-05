@@ -18,7 +18,7 @@
    ```json
     {
         "ConnectionStrings": {
-        "openai": "https://<<リソース名>>.openai.azure.com/"
+            "openai": "https://<<リソース名>>.openai.azure.com/"
         }
     }
     ```
