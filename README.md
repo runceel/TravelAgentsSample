@@ -14,11 +14,11 @@
 
 1. このリポジトリをクローンしてください。
 2. `TravelAgentsSample.sln` を Visual Stduio 2022 で開いてください
-3. `TravelAgentsSample.AppHost` プロジェクトを右クリックしてユーザーシークレットの管理を選択して以下のように、Azure OpenAI Service のエンドポイントを設定してください。
+3. `TravelAgentsSample.AppHost` プロジェクトを右クリックしてユーザーシークレットの管理を選択して以下のように、作成した Azure OpenAI Service のエンドポイントを設定してください。
    ```json
     {
         "ConnectionStrings": {
-        "openai": "https://ai-kaotajpeast.openai.azure.com/"
+        "openai": "https://<<リソース名>>.openai.azure.com/"
         }
     }
     ```
