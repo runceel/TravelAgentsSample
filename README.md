@@ -29,3 +29,17 @@
 .NET Aspire のダッシュボードが表示されるので `TravelAgentsSample` のエンドポイントをクリックしてください。
 デモアプリの画面が表示されるので、テキストボックスに「東京に住んでいるのですが、2泊3日で広島に行きたいです。」など旅行のプランを立てるための基本情報を入力して「問い合わせる」ボタンをクリックしてください。
 
+## エージェントのコード
+
+- `TravelAgentsSample` プロジェクト
+  - Blazor Web App プロジェクト。デモアプリの画面が含まれています。
+    - `Program.cs` で `Kernel` などのセットアップを行っています。
+    - `Components/Pages/Home.razor` と `Home.razor.cs` でエージェントの呼び出しと結果の表示を行っています。
+- `TravelAgentsSample.Agents` プロジェクト
+  - Agent を定義しています。
+    - `AgentFactory.cs` で各種エージェントのプロンプトの定義やエージェントの生成と `AgentGroupChat` の作成を行っています。
+    - `HiroshimaDialectPlugin.cs` で広島弁のプラグインを定義しています。
+- `TravelAgentsSample.AppHost` プロジェクト
+  - .NET Aspire のアプリホストプロジェクト。このプロジェクトをスタートアッププロジェクトに設定して起動してください。
+- `TravelAgentsSample.ServiceDefaults` プロジェクト
+  - .NET Aspire のサービスデフォルトプロジェクト。OTel の構成などのコードが含まれています。
