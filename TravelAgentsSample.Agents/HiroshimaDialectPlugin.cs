@@ -1,12 +1,14 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Parser;
+using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel;
 using System.ComponentModel;
 using System.Text;
 
 namespace TravelAgentsSample.Agents;
 public class HiroshimaDialectPlugin(
-    IHttpClientFactory httpClientFactory)
+    IHttpClientFactory httpClientFactory,
+    ILogger<HiroshimaDialectPlugin> logger)
 {
     private static string? _hiroshimaDialectList;
 
@@ -18,10 +20,12 @@ public class HiroshimaDialectPlugin(
         Kernel kernel)
     {
         var translateToHiroshimaDialectFunction = await CreateTranslateToHiroshimaDialectFunction(kernel);
-        return await translateToHiroshimaDialectFunction.InvokeAsync<string>(kernel, new()
+        var hiroshimaDialect = await translateToHiroshimaDialectFunction.InvokeAsync<string>(kernel, new()
         {
             ["input"] = phrases,
         }) ?? "";
+        logger.LogInformation("{pharases} を翻訳して {hirosimaDialect} になりました。", phrases, hiroshimaDialect);
+        return hiroshimaDialect;
     }
 
     private async Task<KernelFunction> CreateTranslateToHiroshimaDialectFunction(Kernel kernel)
